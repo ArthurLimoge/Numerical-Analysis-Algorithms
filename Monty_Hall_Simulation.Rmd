@@ -25,7 +25,6 @@ monty_hall<-function(number_trials,strategy){
           }
       }
       
-    
         success_rate = win_count/game_count
         print(success_rate)
     
