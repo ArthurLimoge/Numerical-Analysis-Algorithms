@@ -100,4 +100,5 @@ qqline(maximum_vector, distribution = function(p) qgumbel(p, loc = location, sca
 
 ```
 
-The plot is not nearly as accurate as the previous ones. The Gumbel approximation only seems to be valid up to a certain point. We can try to study the data with other patterns. [Open to suggestions]
+The plot is not nearly as accurate as the previous ones. The Gumbel approximation only seems to be valid 
+up to a certain point. We can try to study the data with other patterns. [Open to suggestions]
