@@ -1,4 +1,4 @@
-R Simulations (M2S1 - Chris Hallsworth, Imperial College)
+Coding Catalogue - Imperial College London
 =====
 
 This repository catalogues all the coding work I've had the opportunity to do while studying at Imperial College London. 
