@@ -1,5 +1,4 @@
 import numpy as np
-
 def parallel_qr_reduction(_input):
     size = _input.shape[0]
     extra_block_size = size % 100
@@ -27,11 +26,13 @@ def parallel_qr_reduction(_input):
         big_r_matrix[col_dim*i:col_dim*(i+1), :col_dim] = sub_r
     factorization = qr_reduction(big_r_matrix)
     q_matrix_2 = factorization[1]
-    orthogonal_matrix = np.zeros((1, col_dim))  # pre-allocate a temporary row
+    orthogonal_matrix = np.zeros((1, col_dim))  # pre-allocate
     for i in range(number_blocks):
         orthogonal_block_1 = np.array(orthogonal_blocks[i])
         orthogonal_block_2 = q_matrix_2[2*i:2*(i+1), :2]
         new_block = np.matmul(orthogonal_block_1, orthogonal_block_2)
         orthogonal_matrix = np.vstack((orthogonal_matrix, new_block))
     orthogonal_matrix = orthogonal_matrix[1:, :]
-    return orthogonal_matrix  
+    R_matrix = np.matmul(np.transpose(orthogonal_matrix), _input)
+    output = [_input, orthogonal_matrix, R_matrix]
+    return output
