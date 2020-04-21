@@ -1,4 +1,4 @@
-This repository contains various algorithms I have had the opportunity to code (in Python). Most of them were done for the course *Introduction to Numerical Analysis* by [Peter Schmid](https://www.imperial.ac.uk/people/peter.schmid) :
+This repository contains various algorithms I have had the opportunity to code. Most of them were done for the course *Introduction to Numerical Analysis* by [Peter Schmid](https://www.imperial.ac.uk/people/peter.schmid) :
 
 :large_orange_diamond: **Householder_QR_Reduction.py**: produces a QR factorization of an arbitrary rectangular (m > n) matrix, using Householder transformations.
 
