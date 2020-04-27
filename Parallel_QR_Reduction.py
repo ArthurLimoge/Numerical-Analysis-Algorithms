@@ -1,4 +1,5 @@
 import numpy as np
+
 def parallel_qr_reduction(_input):
     size = _input.shape[0]
     extra_block_size = size % 100
