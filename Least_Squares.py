@@ -1,6 +1,7 @@
 import numpy as np
 
 def least_squares(_input, target):
+    _input = np.array(_input)
     row_dim = _input.shape[0]
     col_dim = _input.shape[1]
     table = qr_reduction(_input)  # if the matrix has significantly more rows, use parallel QR reduction instead
@@ -13,5 +14,5 @@ def least_squares(_input, target):
     else:
         rhs[col_dim:row_dim] = np.zeros(row_dim - col_dim)
         solution = np.round(np.matmul(np.linalg.inv(matrix), rhs[:col_dim]), 3)
-        # norm = np.linalg.norm(target - np.matmul(_input, solution))  # residual norm
-        return solution
+        norm = np.round(np.linalg.norm(target - np.matmul(_input, solution)), 4)  # residual norm
+        return f"{solution} minimizes the residual norm, which is: {norm}"
