@@ -9,3 +9,5 @@ This repository contains various algorithms I have had the opportunity to code. 
 
 :large_orange_diamond: **Least_Squares.py**: algorithm which solves the least squares problem (ie: minimizes the norm of the residual in an overconditioned system) by using QR reduction. 
 *By default, the solver uses the regular QR reduction algorithm. If necessary, can replace it by parallel QR reduction, in a case where the number of rows is far superior than that of columns, for instance.*
+
+:large_orange_diamond: **Cholesky_Decomposition.py**: algorithm that reduces any positive-definite symmetric matrix A into a product LL^t where L is a lower triangular matrix.
