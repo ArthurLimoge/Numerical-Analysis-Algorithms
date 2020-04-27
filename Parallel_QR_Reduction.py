@@ -1,20 +1,21 @@
 import numpy as np
 
 def parallel_qr_reduction(_input):
-    size = _input.shape[0]
-    extra_block_size = size % 100
-    number_blocks = int((size - extra_block_size)/10)  # divide the matrix into blocks of 10 + the last block
+    size = _input.shape[0]  # the matrix needs to have at least as many rows as columns
+    block_size = max(10, _input.shape[1])  # to create smaller blocks of size >= 10.
+    extra_block_size = size % block_size
+    number_blocks = int((size - extra_block_size)/block_size)  # divide the matrix into smaller blocks
     blocks = []
     if extra_block_size >= _input.shape[1] or extra_block_size == 0:
         for i in range(number_blocks):
-            blocks.append(_input[10*i:10*(i+1)])
+            blocks.append(_input[block_size*i:block_size*(i+1)])
         if extra_block_size != 0:
             number_blocks += 1
             blocks.append(_input[size - extra_block_size:size])
     else:
         for i in range(number_blocks-1):
-            blocks.append(_input[10*i:10*(i+1)])
-        blocks.append(_input[10*(number_blocks-1):size])
+            blocks.append(_input[block_size*i:block_size*(i+1)])
+        blocks.append(_input[block_size*(number_blocks-1):size])
     col_dim = _input.shape[1]  # dimensions the R' matrix will have
     row_dim = col_dim*number_blocks
     big_r_matrix = np.zeros((row_dim, col_dim))
@@ -30,7 +31,7 @@ def parallel_qr_reduction(_input):
     orthogonal_matrix = np.zeros((1, col_dim))  # pre-allocate
     for i in range(number_blocks):
         orthogonal_block_1 = np.array(orthogonal_blocks[i])
-        orthogonal_block_2 = q_matrix_2[2*i:2*(i+1), :2]
+        orthogonal_block_2 = q_matrix_2[col_dim*i:col_dim*(i+1), :col_dim]
         new_block = np.matmul(orthogonal_block_1, orthogonal_block_2)
         orthogonal_matrix = np.vstack((orthogonal_matrix, new_block))
     orthogonal_matrix = orthogonal_matrix[1:, :]
